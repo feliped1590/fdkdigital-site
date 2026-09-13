@@ -1,0 +1,52 @@
+import { ExperienceEnhancer } from "./experience";
+
+const method = [
+  ["01", "Diagnosticar", "Enxergamos o processo real — pessoas, decisões, dados, gargalos e riscos."],
+  ["02", "Redesenhar", "Eliminamos ruído e recriamos o fluxo a partir do resultado que o negócio precisa."],
+  ["03", "Digitalizar", "Transformamos o novo processo em uma experiência digital simples, segura e rastreável."],
+  ["04", "Automatizar", "Conectamos sistemas e delegamos tarefas repetitivas a fluxos que nunca perdem o contexto."],
+  ["05", "Inteligenciar", "Aplicamos IA onde ela amplia decisões, antecipa cenários e gera valor mensurável."],
+  ["06", "Medir", "Tornamos o impacto visível com indicadores vivos, do operacional à diretoria."],
+  ["07", "Evoluir", "Aprendemos com a operação e refinamos continuamente processos, tecnologia e inteligência."],
+];
+
+const applications = [
+  ["Operações", "Fluxos sem retrabalho", "Orquestração de tarefas, aprovações e documentos com rastreabilidade ponta a ponta."],
+  ["Comercial", "Decisões no tempo certo", "Visão única da jornada, priorização inteligente e próximas ações recomendadas."],
+  ["Atendimento", "Contexto que acompanha o cliente", "Canais, histórico e conhecimento conectados para respostas melhores e mais rápidas."],
+  ["Gestão", "Dados que orientam ação", "Indicadores vivos, alertas preditivos e uma leitura clara da saúde da operação."],
+];
+
+export const metadata = { title: "FDK Empreendimentos — Transformação Digital e AI First", description: "Transformamos processos complexos em ecossistemas digitais inteligentes." };
+
+export default function Home() { return <main>
+  <ExperienceEnhancer />
+  <header className="site-header"><a className="brand" href="#inicio" aria-label="FDK Empreendimentos — início"><span className="brand-mark">F</span><span>FDK <i>Empreendimentos</i></span></a><nav aria-label="Navegação principal"><a href="#metodologia">Metodologia</a><a href="#aplicacoes">Aplicações</a><a className="nav-cta" href="#contato">Iniciar transformação <span>↗</span></a></nav></header>
+
+  <section className="hero" id="inicio"><div className="hero-grid" aria-hidden="true"/><div className="hero-glow" aria-hidden="true"/>
+    <div className="hero-copy"><p className="eyebrow"><span/> Transformação Digital &amp; AI First</p><h1>Seu processo não precisa de <em>mais um software.</em></h1><p className="hero-statement">Precisa de inteligência.</p><p className="hero-body">A FDK transforma operações fragmentadas em ecossistemas digitais conectados, automatizados e preparados para evoluir com IA.</p><div className="hero-actions"><a className="primary-button" href="#problema">Conheça a transformação <span>↓</span></a><span className="microcopy">Do caos operacional<br/>à inteligência contínua.</span></div></div>
+    <div className="system-scene" aria-label="Processos empresariais desconectados sendo integrados"><div className="orbit orbit-one"/><div className="orbit orbit-two"/><div className="data-core"><span className="core-pulse"/><strong>FDK</strong><small>INTELLIGENCE CORE</small></div><div className="system-card card-a"><span className="status bad"/>PLANILHAS<small>Versão_27_final.xlsx</small></div><div className="system-card card-b"><span className="status warn"/>RETRABALHO<small>+38h / mês</small></div><div className="system-card card-c"><span className="status bad"/>SISTEMAS<small>Desconectados</small></div><div className="system-card card-d"><span className="status good"/>DADOS<small>Em sincronização</small></div></div>
+    <div className="scroll-cue"><span>Explore a jornada</span><i/></div></section>
+
+  <section className="pain chapter" id="problema"><div className="chapter-heading reveal"><p className="chapter-number">01 — O ponto de partida</p><h2>Quando o processo trava,<br/><span>a empresa sente.</span></h2></div><div className="pain-layout">
+    <div className="chaos-board reveal" aria-label="Painel mostrando o caos operacional"><div className="chaos-bar"><i/><i/><i/><span>OPERAÇÃO / VISÃO GERAL</span><b>CONEXÃO INSTÁVEL</b></div><div className="chaos-stack"><article><small>PEDIDOS PENDENTES</small><strong>143</strong><em>↑ 24 esta semana</em></article><article><small>HORAS EM RETRABALHO</small><strong>38h</strong><em>por colaborador / mês</em></article><article><small>DADOS DUPLICADOS</small><strong>27%</strong><em>sem fonte confiável</em></article></div><div className="broken-flow"><span>Planilha</span><i>×</i><span>E-mail</span><i>×</i><span>Sistema legado</span><i>×</i><span>Decisão</span></div></div>
+    <div className="pain-copy reveal"><p>A burocracia cresce silenciosamente.</p><ul><li><span>01</span> Pessoas viram pontes entre sistemas.</li><li><span>02</span> Decisões dependem de informação atrasada.</li><li><span>03</span> O software existe, mas o processo continua quebrado.</li></ul><blockquote>“O problema raramente é a falta de tecnologia. É a falta de conexão entre processo, pessoas e inteligência.”</blockquote></div>
+  </div></section>
+
+  <section className="manifesto chapter"><p className="chapter-number reveal">02 — A mudança de perspectiva</p><div className="manifesto-grid"><h2 className="reveal">O software é uma peça.<br/><span>A transformação é o sistema inteiro.</span></h2><div className="manifesto-copy reveal"><p>Não começamos pela ferramenta. Começamos pelas perguntas certas.</p><p>Entendemos como a empresa funciona, redesenhamos o que precisa mudar e só então combinamos software, automação, dados e IA em uma solução viva.</p><div className="signature"><span>FDK</span><small>PROCESSO → TECNOLOGIA → INTELIGÊNCIA → IMPACTO</small></div></div></div></section>
+
+  <section className="method chapter" id="metodologia"><div className="method-lead reveal"><p className="chapter-number">03 — Método proprietário</p><h2>Metodologia FDK</h2><p>Transformação Digital &amp; AI First</p><small>Uma jornada estruturada, construída para evoluir. A metodologia é um ponto de partida vivo e será refinada com cada transformação.</small></div><div className="method-list">
+    {method.map(([n,title,text])=><article className="method-step reveal" key={n}><span>{n}</span><h3>{title}</h3><p>{text}</p><i>↗</i></article>)}
+  </div></section>
+
+  <section className="transformation chapter"><div className="chapter-heading reveal"><p className="chapter-number">04 — A transformação</p><h2>Do fragmentado ao <span>inteligente.</span></h2></div><div className="comparison reveal"><div className="compare-side before"><small>ANTES / OPERAÇÃO REATIVA</small><div className="mesh broken"><i/><i/><i/><i/><i/></div><ul><li>Informação espalhada</li><li>Trabalho manual</li><li>Decisão por intuição</li><li>Sistemas isolados</li></ul></div><div className="transform-axis"><span>FDK</span><i/><b>TRANSFORMAÇÃO</b></div><div className="compare-side after"><small>DEPOIS / ECOSSISTEMA VIVO</small><div className="mesh connected"><i/><i/><i/><i/><i/></div><ul><li>Fonte única de verdade</li><li>Fluxos automatizados</li><li>Decisão orientada por dados</li><li>IA integrada ao processo</li></ul></div></div></section>
+
+  <section className="applications chapter" id="aplicacoes"><div className="applications-head reveal"><div><p className="chapter-number">05 — Inteligência aplicada</p><h2>Não é sobre usar IA.<br/><span>É sobre gerar impacto.</span></h2></div><p>Aplicações que nascem do contexto real da operação — e não de uma tecnologia procurando um problema.</p></div><div className="application-grid">{applications.map(([tag,title,text],i)=><article className="application-card reveal" key={tag}><span>0{i+1} / {tag}</span><h3>{title}</h3><p>{text}</p><b>Explorar possibilidade ↗</b></article>)}</div></section>
+
+  <section className="principles chapter"><p className="chapter-number reveal">06 — O jeito FDK</p><div className="principles-grid"><h2 className="reveal">Tecnologia com<br/><span>visão de negócio.</span></h2><div className="principle-list reveal"><article><span>01</span><div><h3>Processo antes da plataforma</h3><p>A solução se adapta ao negócio — não o contrário.</p></div></article><article><span>02</span><div><h3>Integração por natureza</h3><p>Conectamos o que já funciona e construímos o que ainda falta.</p></div></article><article><span>03</span><div><h3>IA com propósito</h3><p>Inteligência aplicada onde melhora decisão, experiência ou eficiência.</p></div></article><article><span>04</span><div><h3>Evolução contínua</h3><p>A transformação acompanha o ritmo e a maturidade da empresa.</p></div></article></div></div></section>
+
+  <section className="future chapter"><div className="future-orb" aria-hidden="true"><i/><i/><i/></div><div className="future-copy reveal"><p className="chapter-number">07 — O novo estado</p><h2>Uma empresa que<br/>percebe. Decide. <span>Evolui.</span></h2><p>Processos conectados. Pessoas focadas no que importa. Dados fluindo. Inteligência aprendendo com cada movimento.</p><div className="live-stats"><span><b>24/7</b><small>FLUXOS ORQUESTRADOS</small></span><span><b>360°</b><small>VISÃO DO NEGÓCIO</small></span><span><b>AI</b><small>INTELIGÊNCIA INTEGRADA</small></span></div></div></section>
+
+  <section className="contact chapter" id="contato"><p className="chapter-number reveal">A próxima transformação pode ser a sua.</p><div className="contact-grid"><h2 className="reveal">Vamos redesenhar<br/>o futuro da sua <span>operação?</span></h2><div className="contact-action reveal"><p>Comece com uma conversa sobre o seu processo — não sobre software.</p><a className="contact-button" href="mailto:felipe.duarte@fdkdigital.com.br?subject=Diagnóstico%20de%20Transformação%20Digital">Solicitar diagnóstico inicial <span>↗</span></a><small>Sem compromisso · conversa estratégica · foco no seu negócio</small></div></div></section>
+  <footer><a className="brand" href="#inicio"><span className="brand-mark">F</span><span>FDK <i>Empreendimentos</i></span></a><p>Transformação Digital &amp; AI First</p><small>© {new Date().getFullYear()} FDK Empreendimentos</small></footer>
+</main> }
