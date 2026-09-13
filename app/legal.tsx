@@ -1,5 +1,5 @@
 const company = "FDK EMPREENDIMENTOS LTDA, CNPJ 61.580.034/0001-97, com endereço na Fazenda Ipomeia, 1210, Conj. Hab. Antonio E. Casaroto, Cambé/PR, CEP 86181-597";
-const email = "felipe.duarte@fdkdigital.com.br";
+const email = "contato@fdkdigital.com.br";
 const phone = "(43) 99843-5878";
 
 function Shell({ title, eyebrow, children }: { title: string; eyebrow: string; children: React.ReactNode }) {
