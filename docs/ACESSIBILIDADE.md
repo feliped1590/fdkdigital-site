@@ -44,6 +44,28 @@ O rótulo `INTELLIGENCE CORE`, dentro do orbe decorativo do hero, passou de 7px 
 
 O crescimento de documento ficou abaixo de 0,3% nos dois viewports — a densidade visual foi preservada.
 
-## Pendência anterior, não corrigida
+## Pendência anterior — corrigida em 12/10/2026
 
-No desktop, o `h2` "Metodologia FDK" ultrapassa sua coluna da grade em 45px (444 contra 399). **É anterior a esta mudança**: medi com a fonte antiga e a nova e o valor é idêntico nos dois casos, 444px. O excedente cai dentro do espaçamento de 8vw da grade, então não há sobreposição visível. Corrigir exigiria mexer no tamanho do título, que é elemento de identidade — fica registrado para decisão.
+No desktop, o `h2` "Metodologia FDK" ultrapassava sua coluna da grade. Era anterior a esta mudança: medido com a fonte antiga e a nova, dava 444px nos dois casos.
+
+Ao investigar para corrigir, o problema mostrou-se **maior do que o relatado**. A palavra "Metodologia" mede sempre `5,14 × tamanho da fonte`, e a coluna é sempre ~27,7% da viewport. Com o título em `6vw`, isso significa que ele excedia **em toda a faixa de duas colunas, de 901px a ~1930px** — não apenas em 1440px, como eu havia registrado.
+
+### A correção
+
+Em vez de reduzir o título, alarguei a coluna:
+
+```diff
+-.method{ grid-template-columns: .72fr 1.28fr }
++.method{ grid-template-columns: .85fr 1.15fr }
+```
+
+O raciocínio: a escala tipográfica é o que define a identidade visual; a proporção da grade, não. Alargando a coluna, **o tamanho do título fica exatamente igual ao anterior** — 86,4px em 1440px, como antes — e passa a caber.
+
+| Viewport | Coluna | Palavra | Folga |
+|---|---|---|---|
+| 901 px | 292 | 280 | +12 |
+| 1280 px | 418 | 395 | +23 |
+| 1440 px | 471 | 444 | +27 |
+| 1920 px | 630 | 535 | +95 |
+
+Mobile não é afetado: a consulta de mídia de 900px já colapsa `.method` para coluna única, então a regra alterada nem se aplica. Confirmado — em 375px a grade continua `1fr` e há **0 estouros**.
