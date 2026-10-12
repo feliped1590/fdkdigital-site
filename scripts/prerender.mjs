@@ -26,8 +26,12 @@ const dominio = (await readFile(join(projectRoot, "public", "CNAME"), "utf8")).t
 const SITE_URL = `https://${dominio}`;
 const SITE_NAME = "FDK Digital";
 
-/** Imagem de compartilhamento. Ver docs/OPEN-GRAPH.md sobre a limitação atual. */
-const OG_IMAGE = { caminho: "/fdk-favicon.png", largura: 256, altura: 256 };
+/**
+ * Imagem de compartilhamento: 1200x630, acima do mínimo que o LinkedIn exige
+ * para o card grande. É um quadro do próprio vídeo do hero, recortado com a
+ * marca centralizada — ver docs/OPEN-GRAPH.md.
+ */
+const OG_IMAGE = { caminho: "/fdk-og.jpg", largura: 1200, altura: 630 };
 
 const PLACEHOLDER = '<div id="root"></div>';
 const resultados = [];
@@ -55,9 +59,7 @@ function montarMetadados({ titulo, descricao, canonical }) {
     `<meta property="og:image:width" content="${OG_IMAGE.largura}"/>`,
     `<meta property="og:image:height" content="${OG_IMAGE.altura}"/>`,
     `<meta property="og:image:alt" content="Marca FDK"/>`,
-    // "summary" é o formato certo para imagem quadrada. Com uma imagem
-    // dedicada de 1200x630, passa a ser "summary_large_image".
-    `<meta name="twitter:card" content="summary"/>`,
+    `<meta name="twitter:card" content="summary_large_image"/>`,
     `<meta name="twitter:title" content="${titulo}"/>`,
     `<meta name="twitter:description" content="${descricao}"/>`,
     `<meta name="twitter:image" content="${SITE_URL}${OG_IMAGE.caminho}"/>`,
