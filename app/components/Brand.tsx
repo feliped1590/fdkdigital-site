@@ -7,7 +7,7 @@ export function Brand({ href, ariaLabel }: { href: string; ariaLabel?: string })
     <a className="brand" href={href} aria-label={ariaLabel}>
       <span className="brand-mark">F</span>
       <span>
-        FDK <i>Empreendimentos</i>
+        FDK <i>Digital</i>
       </span>
     </a>
   );

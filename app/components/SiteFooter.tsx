@@ -22,7 +22,13 @@ export function SiteFooter() {
           </a>
         ))}
       </div>
-      <small>© {new Date().getFullYear()} FDK Empreendimentos</small>
+      {/* Uma expressão só por nó de texto: separar em várias faz o React
+          emitir marcadores <!-- --> no HTML. */}
+      <small>
+        FDK Digital é a marca de tecnologia da FDK Empreendimentos
+        <br />
+        {`© ${new Date().getFullYear()} ${company.razaoSocial}`}
+      </small>
     </footer>
   );
 }

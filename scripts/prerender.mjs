@@ -24,7 +24,7 @@ const { render, routes } = await import(pathToFileURL(serverEntry).href);
 // O domínio vem do CNAME, que é quem de fato determina o endereço publicado.
 const dominio = (await readFile(join(projectRoot, "public", "CNAME"), "utf8")).trim();
 const SITE_URL = `https://${dominio}`;
-const SITE_NAME = "FDK Empreendimentos";
+const SITE_NAME = "FDK Digital";
 
 /** Imagem de compartilhamento. Ver docs/OPEN-GRAPH.md sobre a limitação atual. */
 const OG_IMAGE = { caminho: "/fdk-favicon.png", largura: 256, altura: 256 };

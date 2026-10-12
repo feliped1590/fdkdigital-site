@@ -5,7 +5,7 @@ export function SiteHeader() {
   return (
     <>
       <header className="site-header">
-        <Brand href="#inicio" ariaLabel="FDK Empreendimentos — início" />
+        <Brand href="#inicio" ariaLabel="FDK Digital — início" />
         <nav aria-label="Navegação principal">
           <a href="#metodologia">Metodologia</a>
           <a href="#aplicacoes">Aplicações</a>
