@@ -24,7 +24,7 @@ const { render, routes } = await import(pathToFileURL(serverEntry).href);
 // O domínio vem do CNAME, que é quem de fato determina o endereço publicado.
 const dominio = (await readFile(join(projectRoot, "public", "CNAME"), "utf8")).trim();
 const SITE_URL = `https://${dominio}`;
-const SITE_NAME = "FDK Empreendimentos";
+const SITE_NAME = "FDK Digital";
 
 /** Imagem de compartilhamento. Ver docs/OPEN-GRAPH.md sobre a limitação atual. */
 const OG_IMAGE = { caminho: "/fdk-favicon.png", largura: 256, altura: 256 };
@@ -105,4 +105,25 @@ for (const route of routes) {
   });
 }
 
+// robots.txt e sitemap.xml são gerados aqui, e não mantidos em public/, para
+// que a lista de URLs venha das mesmas rotas e o domínio venha do mesmo CNAME.
+// Acrescentar uma rota em app/routes.tsx já a coloca no sitemap.
+const urls = routes.map((route) => (route.path === "/" ? "/" : `${route.path}/`));
+
+const robots = ["User-agent: *", "Allow: /", "", `Sitemap: ${SITE_URL}/sitemap.xml`, ""].join("\n");
+await writeFile(join(distDir, "robots.txt"), robots, "utf8");
+
+// Sem <lastmod>: o build roda com clone raso no CI, então não há histórico para
+// datar cada rota com honestidade. Melhor omitir do que publicar uma data que
+// muda a cada deploy sem o conteúdo ter mudado.
+const sitemap = [
+  '<?xml version="1.0" encoding="UTF-8"?>',
+  '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+  ...urls.map((url) => `  <url><loc>${SITE_URL}${url}</loc></url>`),
+  "</urlset>",
+  "",
+].join("\n");
+await writeFile(join(distDir, "sitemap.xml"), sitemap, "utf8");
+
 console.table(resultados);
+console.log(`robots.txt e sitemap.xml gerados com ${urls.length} URLs em ${SITE_URL}`);

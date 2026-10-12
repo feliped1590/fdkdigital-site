@@ -57,9 +57,22 @@ O efeito prático hoje:
 
 **Melhoria pendente:** criar uma imagem de 1200×630 e, junto com ela, trocar `OG_IMAGE` e o `twitter:card` para `summary_large_image` em `scripts/prerender.mjs`. É uma peça de design — por isso não foi inventada aqui.
 
-## Ainda ausentes
+## robots.txt e sitemap.xml
 
-`robots.txt` e `sitemap.xml` continuam retornando 404. São itens separados, listados em `AUDITORIA.md`.
+Também gerados por `scripts/prerender.mjs`, e não mantidos em `public/`, pelo mesmo motivo: a lista de URLs sai das mesmas rotas e o domínio sai do mesmo `CNAME`. **Acrescentar uma rota em `app/routes.tsx` já a coloca no sitemap** — não há uma segunda lista para esquecer de atualizar.
+
+```
+User-agent: *
+Allow: /
+
+Sitemap: https://fdkdigital.com.br/sitemap.xml
+```
+
+O sitemap lista as quatro URLs, idênticas aos `canonical` de cada página.
+
+**Sem `<lastmod>`, de propósito.** O build roda no CI com clone raso, então não há histórico para datar cada rota com honestidade. Publicar uma data que muda a cada deploy, sem o conteúdo ter mudado, é pior que não publicar data nenhuma — e `changefreq` e `priority` são ignorados pelos buscadores.
+
+Conferido: `/robots.txt` responde 200 em `text/plain`, `/sitemap.xml` responde 200 em `application/xml`, e as 4 URLs do sitemap **batem exatamente** com os 4 `canonical` gerados — nenhuma sobrando, nenhuma faltando.
 
 ## Verificação
 
