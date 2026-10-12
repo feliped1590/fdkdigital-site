@@ -1,15 +1,15 @@
 import React from "react";
 import { createRoot, hydrateRoot } from "react-dom/client";
-import { findRoute } from "./app/routes";
+import { App } from "./app/App";
 import "./app/globals.css";
 import "./app/story.css";
 import "./app/refinements.css";
+import "./app/consent.css";
 
-const { Component } = findRoute(window.location.pathname);
 const container = document.getElementById("root")!;
 const tree = (
   <React.StrictMode>
-    <Component />
+    <App path={window.location.pathname} />
   </React.StrictMode>
 );
 
