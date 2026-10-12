@@ -90,8 +90,11 @@ function injetarGA4(): void {
   document.head.appendChild(script);
 
   gtag("js", new Date());
-  // IP anonimizado: reduz o dado pessoal tratado, em linha com a LGPD.
-  gtag("config", GA4_ID, { anonymize_ip: true });
+  // Sem `anonymize_ip`: é parâmetro do Universal Analytics. No GA4 a
+  // anonimização de IP é automática e não desligável, e passar a chave aqui
+  // não vira configuração — vira parâmetro de evento (`ep.anonymize_ip`),
+  // sujando todo page_view com um campo sem significado.
+  gtag("config", GA4_ID);
 }
 
 /**
