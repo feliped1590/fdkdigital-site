@@ -41,21 +41,22 @@ Canonical e `og:url` por rota:
 | `/termos-de-uso/` | `https://fdkdigital.com.br/termos-de-uso/` |
 | `/exclusao-de-dados/` | `https://fdkdigital.com.br/exclusao-de-dados/` |
 
-## Limitação conhecida: a imagem
+## A imagem de compartilhamento
 
-**Não existe uma imagem de compartilhamento dedicada.** O site só tem `fdk-favicon.png` (256×256) e `fdk-apple-touch-icon.png` (180×180) — ambas quadradas e pequenas.
+`public/fdk-og.jpg` — **1200×630, 24 KB**, acima do mínimo de 1200×627 que o LinkedIn exige para renderizar o card grande. Por isso o `twitter:card` é `summary_large_image`.
 
-Por isso o `twitter:card` está como **`summary`**, não `summary_large_image`: com imagem quadrada, `summary` é o formato correto e rende uma miniatura limpa. Declarar `summary_large_image` com uma imagem de 256 px produziria um card grande com imagem esticada ou recortada.
+Não é uma peça de design inventada: é um **quadro do próprio vídeo do hero**, recortado na resolução nativa com a marca centralizada.
 
-O efeito prático hoje:
+```bash
+ffmpeg -ss 5 -i public/fdk-hero-motion-silent.mp4 -frames:v 1 \
+       -vf "crop=1200:630:848:225" -q:v 3 public/fdk-og.jpg
+```
 
-| Plataforma | Resultado |
-|---|---|
-| WhatsApp | título, descrição e miniatura quadrada da marca |
-| LinkedIn | título, descrição e miniatura pequena (o card grande exige ≥ 1200×627) |
-| X / Twitter | card `summary` com miniatura |
+O recorte parte do frame de 1920×1080 — sem reescalar para cima, então não há perda. O orbe FDK fica no centro, e o fundo escuro com a grade dá contexto de marca sem repetir o título, que as plataformas já exibem como texto ao lado da imagem.
 
-**Melhoria pendente:** criar uma imagem de 1200×630 e, junto com ela, trocar `OG_IMAGE` e o `twitter:card` para `summary_large_image` em `scripts/prerender.mjs`. É uma peça de design — por isso não foi inventada aqui.
+**Composição é escolha, não fato.** Testei três enquadramentos antes deste; se preferir outro — a página inteira renderizada, a marca à direita com respiro à esquerda, ou uma peça desenhada do zero — é trocar o arquivo e, se mudar a proporção, os campos `largura` e `altura` em `OG_IMAGE`.
+
+Antes desta imagem, o `og:image` era o favicon de 256×256 e o card era `summary`: o LinkedIn mostrava apenas uma miniatura pequena.
 
 ## robots.txt e sitemap.xml
 
