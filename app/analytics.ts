@@ -16,7 +16,7 @@
  * HTML. Esvaziar esta constante desliga toda a camada: o banner deixa de
  * aparecer e nada é carregado, mesmo para quem já consentiu.
  */
-export const GA4_ID = "G-FLWF2C0Y3T";
+export const GA4_ID = "G-FWWF2C0Y3T";
 
 const CHAVE = "fdk-consentimento-v1";
 
