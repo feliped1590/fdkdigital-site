@@ -1,0 +1,303 @@
+/* Página FDK Industrial 360.
+   Mantém tipografia, grid e componentes do site institucional; usa --cyan como
+   acento dominante para diferenciar o produto sem romper o ecossistema FDK. */
+
+.platform-hero {
+  position: relative;
+  min-height: 92svh;
+  display: flex;
+  align-items: center;
+  padding: 150px 7vw 90px;
+  overflow: hidden;
+  isolation: isolate;
+  background: #060b10;
+}
+.platform-hero .hero-grid {
+  mask-image: linear-gradient(to bottom, black, transparent 90%);
+}
+.platform-hero-copy {
+  position: relative;
+  z-index: 2;
+  max-width: 880px;
+}
+.platform-hero h1 {
+  max-width: 880px;
+  font-size: clamp(2.9rem, 5.6vw, 6rem);
+}
+.platform-hero h1 span {
+  color: var(--cyan);
+}
+.platform-lead {
+  max-width: 620px;
+  margin: 34px 0 0;
+  color: #aeb8b5;
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+/* Selo de estágio: precisa ser lido junto com o título, não no rodapé. */
+.stage-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 15px;
+  border: 1px solid #5ce1e655;
+  background: #5ce1e610;
+  color: var(--cyan);
+  font-family: var(--font-geist-mono);
+  font-size: 11px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+.stage-badge i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 10px var(--cyan);
+}
+
+/* Aviso de estágio repetido em texto corrente, sem letra miúda. */
+.stage-note {
+  max-width: 620px;
+  margin: 34px 0 0;
+  padding: 20px 22px;
+  border-left: 2px solid var(--cyan);
+  background: #5ce1e609;
+  color: #9fb0ae;
+  font-size: 13px;
+  line-height: 1.7;
+}
+.stage-note strong {
+  color: #dceceb;
+  font-weight: 560;
+}
+
+.platform-problems {
+  background: #e9efec;
+  color: #07100d;
+}
+.problem-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 6vw;
+  margin-top: 9vh;
+}
+.problem-list article {
+  display: grid;
+  grid-template-columns: 46px 1fr;
+  gap: 18px;
+  padding: 26px 0;
+  border-top: 1px solid #0d1b151d;
+}
+.problem-list span {
+  color: #147278;
+  font: 11px var(--font-geist-mono);
+}
+.problem-list h3 {
+  margin: 0 0 7px;
+  font-size: 18px;
+  font-weight: 490;
+  letter-spacing: -0.02em;
+}
+.problem-list p {
+  margin: 0;
+  color: #5d6a66;
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.platform-lines {
+  background: #070c10;
+}
+.line-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 9vh;
+  border: 1px solid #ffffff15;
+}
+.line-card {
+  min-height: 290px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #ffffff15;
+  border-bottom: 1px solid #ffffff15;
+  transition: background 0.3s;
+}
+.line-card:hover {
+  background: #5ce1e608;
+}
+.line-card > span {
+  color: var(--cyan);
+  font: 11px var(--font-geist-mono);
+  letter-spacing: 0.14em;
+}
+.line-card h3 {
+  margin: 48px 0 14px;
+  font-size: 28px;
+  font-weight: 450;
+  letter-spacing: -0.04em;
+}
+.line-card p {
+  max-width: 440px;
+  margin: 0;
+  color: #8a9794;
+  font-size: 13px;
+  line-height: 1.7;
+}
+.line-card ul {
+  list-style: none;
+  margin: 22px 0 0;
+  padding: 0;
+}
+.line-card li {
+  padding: 9px 0;
+  border-top: 1px solid #ffffff12;
+  color: #7f8c89;
+  font-size: 12px;
+}
+.line-card b {
+  margin-top: auto;
+  padding-top: 22px;
+  color: #73817d;
+  font: 11px var(--font-geist-mono);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.platform-benefits {
+  background: #0a1014;
+}
+.benefit-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2px;
+  margin-top: 9vh;
+}
+.benefit-grid article {
+  padding: 34px 30px;
+  background: #0d141a;
+  border-top: 1px solid #5ce1e626;
+}
+.benefit-grid h3 {
+  margin: 0 0 10px;
+  font-size: 17px;
+  font-weight: 490;
+  letter-spacing: -0.02em;
+  color: #e4eeec;
+}
+.benefit-grid p {
+  margin: 0;
+  color: #818e8b;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.platform-cta {
+  background: #060b0f;
+}
+.platform-cta-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 0.6fr;
+  gap: 8vw;
+  align-items: end;
+}
+.platform-cta h2 span {
+  color: var(--cyan);
+}
+.platform-cta-action p {
+  color: #9aa6a3;
+  font-size: 15px;
+  line-height: 1.7;
+}
+.platform-button {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: 28px;
+  padding: 18px 20px;
+  background: var(--cyan);
+  color: #04171a;
+  font-size: 12px;
+  font-weight: 650;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.platform-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 40px #5ce1e626;
+}
+.platform-secondary {
+  display: block;
+  margin-top: 16px;
+  color: #8e9b98;
+  font-size: 12px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.platform-cta-action small {
+  display: block;
+  margin-top: 18px;
+  color: #73807d;
+  font: 11px var(--font-geist-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 900px) {
+  .platform-hero {
+    padding: 130px 20px 70px;
+    min-height: auto;
+  }
+  .problem-list,
+  .benefit-grid,
+  .line-grid,
+  .platform-cta-grid {
+    grid-template-columns: 1fr;
+  }
+  .platform-cta-action {
+    margin-top: 40px;
+  }
+}
+@media (max-width: 600px) {
+  .platform-hero h1 {
+    font-size: 2.7rem;
+  }
+  .line-card {
+    min-height: auto;
+    padding: 28px;
+  }
+}
+
+/* Nota que distingue o serviço de CRM já entregue do módulo em construção.
+   Fica visualmente subordinada ao escopo pela borda e pelo tamanho, não por
+   contraste baixo: o texto mantém 6,5:1 sobre o fundo da seção. */
+.line-note {
+  margin: 20px 0 0;
+  padding: 14px 16px;
+  border-left: 2px solid #5ce1e655;
+  background: #5ce1e608;
+  color: #8a9794;
+  /* O tamanho vem de `.line-card p` (13px), que tem especificidade maior.
+     A hierarquia aqui é dada pela borda e pelo fundo, não por texto menor —
+     reduzir o corpo prejudicaria a legibilidade. */
+  line-height: 1.65;
+  max-width: 440px;
+}
+
+@media (max-width: 600px) {
+  .line-note {
+    padding: 12px 14px;
+  }
+}
+
+/* A seção de problemas tem fundo claro. Os acentos globais — lime no número
+   do capítulo, cinza no destaque do título — foram pensados para fundo escuro
+   e reprovam no contraste aqui. Escurecem, como a produção já faz no bloco
+   lime da Home. */
+.platform-problems .chapter-number {
+  color: #147278;
+}
+.platform-problems h2 span {
+  color: #798480;
+}
