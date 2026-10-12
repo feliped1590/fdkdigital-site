@@ -1,0 +1,58 @@
+name: Verificação
+
+# O workflow de publicação só dispara em push na main, então pull requests não
+# tinham nenhuma checagem. Este dá o sinal antes do merge, não depois.
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  verificar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+
+      - name: Tipos
+        run: npm run typecheck
+
+      - name: Build
+        run: npm run build
+
+      - name: As quatro rotas saem com conteúdo no HTML
+        run: |
+          set -e
+          for rota in "index" "politica-de-privacidade/index" "termos-de-uso/index" "exclusao-de-dados/index"; do
+            arquivo="dist/$rota.html"
+            bytes=$(wc -c < "$arquivo")
+            if [ "$bytes" -lt 2000 ]; then
+              echo "::error file=$arquivo::$arquivo tem apenas $bytes bytes — a pré-renderização não rodou."
+              exit 1
+            fi
+            grep -q 'rel="canonical"' "$arquivo" || { echo "::error file=$arquivo::sem canonical"; exit 1; }
+            grep -q 'og:title' "$arquivo" || { echo "::error file=$arquivo::sem Open Graph"; exit 1; }
+            echo "$arquivo: $bytes bytes, canonical e Open Graph presentes"
+          done
+
+      - name: robots.txt e sitemap.xml existem e concordam entre si
+        run: |
+          set -e
+          test -f dist/robots.txt || { echo "::error::robots.txt não foi gerado"; exit 1; }
+          test -f dist/sitemap.xml || { echo "::error::sitemap.xml não foi gerado"; exit 1; }
+          node -e "
+            const fs = require('fs');
+            const locs = [...fs.readFileSync('dist/sitemap.xml','utf8').matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => m[1]).sort();
+            const rotas = ['index','politica-de-privacidade/index','termos-de-uso/index','exclusao-de-dados/index'];
+            const canon = rotas.map(r => fs.readFileSync('dist/'+r+'.html','utf8').match(/rel=\"canonical\" href=\"([^\"]+)\"/)[1]).sort();
+            if (JSON.stringify(locs) !== JSON.stringify(canon)) {
+              console.error('::error::sitemap e canonical divergem');
+              console.error('sitemap:  ' + locs.join(', '));
+              console.error('canonical:' + canon.join(', '));
+              process.exit(1);
+            }
+            console.log('sitemap e canonical batem nas ' + locs.length + ' rotas');
+          "
