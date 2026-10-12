@@ -4,11 +4,14 @@ import { useEffect } from "react";
 export function ExperienceEnhancer() {
   useEffect(() => {
     const els = [...document.querySelectorAll<HTMLElement>(".reveal")];
+    // Usa o `observer` que a própria callback recebe, em vez de fechar sobre a
+    // variável `io` — que o TypeScript, com razão, considera possivelmente nula.
+    // É a mesma instância; o comportamento não muda.
     const io = "IntersectionObserver" in window
-      ? new IntersectionObserver(entries => entries.forEach(entry => {
+      ? new IntersectionObserver((entries, observer) => entries.forEach(entry => {
           if (entry.isIntersecting) {
             entry.target.classList.add("visible");
-            io.unobserve(entry.target);
+            observer.unobserve(entry.target);
           }
         }), { threshold: .14, rootMargin: "0px 0px -8%" })
       : null;
