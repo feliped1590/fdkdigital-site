@@ -42,7 +42,7 @@ gtag("consent", "default", {
 
 Hoje só `analytics_storage` é concedido no aceite. Acrescentar Google Ads ou conversões depois **não exige refazer esta camada** — basta conceder os sinais de anúncio e acrescentar a opção correspondente no banner.
 
-O GA4 é configurado com `anonymize_ip: true`, o que reduz o dado pessoal tratado.
+No GA4 a anonimização de IP é automática e não desligável — não há parâmetro a configurar. O `anonymize_ip` é do Universal Analytics e, se passado aqui, vira parâmetro de evento (`ep.anonymize_ip`) em vez de configuração.
 
 ## Política de privacidade
 

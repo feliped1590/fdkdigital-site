@@ -16,7 +16,7 @@
  * HTML. Esvaziar esta constante desliga toda a camada: o banner deixa de
  * aparecer e nada é carregado, mesmo para quem já consentiu.
  */
-export const GA4_ID = "G-FLWF2C0Y3T";
+export const GA4_ID = "G-FWWF2C0Y3T";
 
 const CHAVE = "fdk-consentimento-v1";
 
@@ -90,8 +90,11 @@ function injetarGA4(): void {
   document.head.appendChild(script);
 
   gtag("js", new Date());
-  // IP anonimizado: reduz o dado pessoal tratado, em linha com a LGPD.
-  gtag("config", GA4_ID, { anonymize_ip: true });
+  // Sem `anonymize_ip`: é parâmetro do Universal Analytics. No GA4 a
+  // anonimização de IP é automática e não desligável, e passar a chave aqui
+  // não vira configuração — vira parâmetro de evento (`ep.anonymize_ip`),
+  // sujando todo page_view com um campo sem significado.
+  gtag("config", GA4_ID);
 }
 
 /**
