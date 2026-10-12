@@ -1,7 +1,12 @@
 /* Experience refinements layered after the original visual system. */
+@import "./fonts.css";
+
+/* Geist e Geist Mono são servidas pelo site (ver fonts.css). "Segoe UI" e
+   "Cascadia Mono" permanecem como fallback: se a fonte não carregar, o Windows
+   volta exatamente ao que era antes. */
 :root {
-  --font-geist-sans: "Segoe UI", Arial, sans-serif;
-  --font-geist-mono: "Cascadia Mono", "SFMono-Regular", Consolas, monospace;
+  --font-geist-sans: "Geist", "Segoe UI", Arial, sans-serif;
+  --font-geist-mono: "Geist Mono", "Cascadia Mono", "SFMono-Regular", Consolas, monospace;
 }
 
 main {
