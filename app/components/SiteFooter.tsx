@@ -1,5 +1,26 @@
+import { EVENTO_ABRIR, analyticsConfigurado } from "../analytics";
 import { assinaturaLegal, company, paginasLegais } from "../company";
 import { Brand } from "./Brand";
+
+/**
+ * Reabre o banner para rever a escolha — a LGPD exige que o consentimento seja
+ * revogável. Só aparece quando há analytics configurado; caso contrário não há
+ * escolha a rever.
+ */
+function PreferenciasCookies() {
+  if (!analyticsConfigurado()) return null;
+  return (
+    <a
+      href="#preferencias-cookies"
+      onClick={(evento) => {
+        evento.preventDefault();
+        window.dispatchEvent(new Event(EVENTO_ABRIR));
+      }}
+    >
+      Preferências de cookies
+    </a>
+  );
+}
 
 /** Rodapé da Home. As páginas legais têm rodapé próprio, mais enxuto. */
 export function SiteFooter() {
@@ -21,6 +42,7 @@ export function SiteFooter() {
             {pagina.titulo}
           </a>
         ))}
+        <PreferenciasCookies />
       </div>
       {/* Uma expressão só por nó de texto: separar em várias faz o React
           emitir marcadores <!-- --> no HTML. */}

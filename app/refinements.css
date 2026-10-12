@@ -141,16 +141,16 @@ main {
 .contact-action small,
 footer p,
 footer small {
-  font-size: 10px;
+  font-size: 11px;
 }
 
 .system-card {
-  font-size: 10px;
+  font-size: 11px;
 }
 
 .system-card small,
 .data-core small {
-  font-size: 9px;
+  font-size: 11px;
 }
 
 .application-link {
@@ -228,7 +228,7 @@ footer small {
   .mobile-nav a {
     padding: 10px 4px;
     color: #aeb8b5;
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 650;
     letter-spacing: 0.04em;
     text-align: center;
@@ -299,12 +299,12 @@ footer small {
   }
 
   .brand i {
-    font-size: 8px;
+    font-size: 11px;
   }
 
   .nav-cta {
     padding: 10px 11px;
-    font-size: 9px;
+    font-size: 11px;
   }
 
   .nav-cta span {
@@ -358,7 +358,7 @@ footer small {
 .illustrative-label {
   margin-left: auto;
   color: #7e8a87;
-  font-size: 7px;
+  font-size: 11px;
   letter-spacing: 0.12em;
 }
 
@@ -394,7 +394,7 @@ footer small {
   border: 1px solid #101d1724;
   background: #edf2ef;
   color: #53605b;
-  font: 8px var(--font-geist-mono);
+  font: 11px var(--font-geist-mono);
   text-align: center;
   text-transform: uppercase;
 }
@@ -438,7 +438,7 @@ footer small {
 .disconnected-flow > small {
   margin-top: 10px;
   color: #655955;
-  font: 8px var(--font-geist-mono);
+  font: 11px var(--font-geist-mono);
   text-transform: uppercase;
 }
 
@@ -494,7 +494,7 @@ footer small {
   display: block;
   margin-top: 3px;
   color: #3f5f20;
-  font: 7px var(--font-geist-mono);
+  font: 11px var(--font-geist-mono);
   line-height: 1.25;
   letter-spacing: 0.06em;
   white-space: nowrap;
@@ -505,7 +505,7 @@ footer small {
   padding: 10px 14px;
   background: #07100d;
   color: #e8efeb;
-  font-size: 10px;
+  font-size: 11px;
 }
 
 .flow-outcome b {
@@ -558,8 +558,8 @@ footer small {
   align-items: center;
   border-bottom: 1px solid #ffffff10;
   background: #081014e8;
-  color: #6f7c78;
-  font: 7px var(--font-geist-mono);
+  color: #76837f;
+  font: 11px var(--font-geist-mono);
   letter-spacing: 0.12em;
 }
 
@@ -592,7 +592,7 @@ footer small {
   border: 1px solid #ffffff18;
   background: #071014e8;
   color: #8f9b98;
-  font: 8px var(--font-geist-mono);
+  font: 11px var(--font-geist-mono);
   text-transform: uppercase;
 }
 
@@ -622,7 +622,7 @@ footer small {
   border: 1px solid #ffffff0d;
   background: #071014cc;
   color: #98a3a0;
-  font: 8px var(--font-geist-mono);
+  font: 11px var(--font-geist-mono);
 }
 
 .commercial-visual i {
@@ -635,7 +635,7 @@ footer small {
 
 .commercial-visual b {
   color: var(--lime);
-  font-size: 9px;
+  font-size: 11px;
 }
 
 .service-visual {
@@ -652,7 +652,7 @@ footer small {
   border-radius: 1px 7px 7px 7px;
   background: #121b1f;
   color: #9ca8a5;
-  font-size: 8px;
+  font-size: 11px;
 }
 
 .service-visual span:nth-child(2) {
@@ -664,8 +664,8 @@ footer small {
 
 .service-visual small {
   margin-top: auto;
-  color: #687572;
-  font: 7px var(--font-geist-mono);
+  color: #74817e;
+  font: 11px var(--font-geist-mono);
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -697,7 +697,7 @@ footer small {
   padding: 4px 6px;
   background: #04090ce6;
   color: #91a09b;
-  font: 8px var(--font-geist-mono);
+  font: 11px var(--font-geist-mono);
   font-weight: 450;
   letter-spacing: 0.12em;
 }
@@ -729,15 +729,15 @@ footer small {
 }
 
 .crm-demo-bar small {
-  color: #687572;
-  font: 8px var(--font-geist-mono);
+  color: #74817e;
+  font: 11px var(--font-geist-mono);
   letter-spacing: 0.1em;
 }
 
 .crm-demo-bar b {
   margin-left: auto;
   color: var(--lime);
-  font: 8px var(--font-geist-mono);
+  font: 11px var(--font-geist-mono);
 }
 
 .crm-contact,
@@ -754,8 +754,8 @@ footer small {
 
 .crm-contact small,
 .crm-opportunity small {
-  color: #6d7976;
-  font: 8px var(--font-geist-mono);
+  color: #75817e;
+  font: 11px var(--font-geist-mono);
   letter-spacing: 0.1em;
 }
 
@@ -778,7 +778,7 @@ footer small {
   padding: 8px 10px;
   border: 1px solid #b8ff5c33;
   color: var(--lime);
-  font: 8px var(--font-geist-mono);
+  font: 11px var(--font-geist-mono);
   font-style: normal;
 }
 
@@ -805,7 +805,7 @@ footer small {
 .crm-conversation small {
   margin-top: auto;
   color: #71807b;
-  font: 8px var(--font-geist-mono);
+  font: 11px var(--font-geist-mono);
   text-transform: uppercase;
 }
 
@@ -819,7 +819,7 @@ footer small {
 .crm-opportunity i {
   margin-top: auto;
   color: #73817d;
-  font: 8px var(--font-geist-mono);
+  font: 11px var(--font-geist-mono);
   font-style: normal;
 }
 
@@ -861,8 +861,8 @@ footer small {
   grid-template-columns: 1fr auto;
   padding-bottom: 18px;
   border-bottom: 1px solid #ffffff14;
-  color: #6f7c78;
-  font: 8px var(--font-geist-mono);
+  color: #76837f;
+  font: 11px var(--font-geist-mono);
   letter-spacing: 0.1em;
 }
 
@@ -885,12 +885,12 @@ footer small {
 
 .dashboard-signal span {
   color: #75827e;
-  font-size: 10px;
+  font-size: 11px;
 }
 
 .dashboard-signal i {
   color: var(--lime);
-  font: 10px var(--font-geist-mono);
+  font: 11px var(--font-geist-mono);
   font-style: normal;
 }
 
@@ -918,7 +918,7 @@ footer small {
 
 .future-dashboard > small {
   color: #71807b;
-  font: 8px var(--font-geist-mono);
+  font: 11px var(--font-geist-mono);
   letter-spacing: 0.1em;
 }
 
@@ -995,7 +995,7 @@ footer small {
   }
 
   .flow-sources span {
-    font-size: 6px;
+    font-size: 11px;
   }
 
   .application-visual {
@@ -1009,7 +1009,7 @@ footer small {
 
   .operation-visual span {
     padding: 9px 7px;
-    font-size: 6px;
+    font-size: 11px;
   }
 
   .operation-visual i {

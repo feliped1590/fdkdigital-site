@@ -1,0 +1,106 @@
+/* Banner de consentimento. Segue os mesmos pisos de acessibilidade do resto
+   do site: nenhum texto abaixo de 11px e contraste mínimo de 4,5:1. */
+
+.consent {
+  position: fixed;
+  z-index: 60;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  width: min(880px, calc(100vw - 40px));
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  padding: 20px 24px;
+  background: #0b1116f2;
+  border: 1px solid #ffffff24;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 20px 60px #0009;
+}
+
+.consent-texto strong {
+  display: block;
+  margin-bottom: 6px;
+  color: #eff5f2;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.consent-texto p {
+  margin: 0;
+  max-width: 62ch;
+  color: #aab5b2;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.consent-texto a {
+  color: var(--lime);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.consent-acoes {
+  display: flex;
+  gap: 10px;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.consent button {
+  padding: 11px 20px;
+  border: 1px solid transparent;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 650;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.consent button:hover {
+  transform: translateY(-1px);
+}
+
+.consent-aceitar {
+  background: var(--lime);
+  color: #091007;
+}
+
+.consent-recusar {
+  background: transparent;
+  border-color: #ffffff3d;
+  color: #d5dedb;
+}
+
+.consent-recusar:hover {
+  background: #ffffff12;
+}
+
+/* A navegação fixa do mobile ocupa o rodapé: o banner sobe para não cobri-la. */
+@media (max-width: 900px) {
+  .consent {
+    bottom: 86px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+    padding: 18px 20px;
+  }
+
+  .consent-acoes {
+    margin-left: 0;
+  }
+
+  .consent button {
+    flex: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .consent button {
+    transition: none;
+  }
+  .consent button:hover {
+    transform: none;
+  }
+}
