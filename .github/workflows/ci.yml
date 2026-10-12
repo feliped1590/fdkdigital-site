@@ -23,11 +23,15 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: As quatro rotas saem com conteúdo no HTML
+      # A lista de rotas é descoberta do próprio build, e não fixada aqui: assim
+      # uma rota nova entra na verificação sozinha, sem este arquivo envelhecer.
+      - name: Toda rota sai com conteúdo no HTML
         run: |
           set -e
-          for rota in "index" "politica-de-privacidade/index" "termos-de-uso/index" "exclusao-de-dados/index"; do
-            arquivo="dist/$rota.html"
+          encontradas=$(find dist -name 'index.html' | wc -l)
+          echo "rotas geradas: $encontradas"
+          [ "$encontradas" -ge 1 ] || { echo "::error::nenhuma rota gerada"; exit 1; }
+          for arquivo in $(find dist -name 'index.html'); do
             bytes=$(wc -c < "$arquivo")
             if [ "$bytes" -lt 2000 ]; then
               echo "::error file=$arquivo::$arquivo tem apenas $bytes bytes — a pré-renderização não rodou."
@@ -46,8 +50,9 @@ jobs:
           node -e "
             const fs = require('fs');
             const locs = [...fs.readFileSync('dist/sitemap.xml','utf8').matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => m[1]).sort();
-            const rotas = ['index','politica-de-privacidade/index','termos-de-uso/index','exclusao-de-dados/index'];
-            const canon = rotas.map(r => fs.readFileSync('dist/'+r+'.html','utf8').match(/rel=\"canonical\" href=\"([^\"]+)\"/)[1]).sort();
+            const { execSync } = require('child_process');
+            const rotas = execSync(\"find dist -name 'index.html'\").toString().trim().split('\n');
+            const canon = rotas.map(r => fs.readFileSync(r,'utf8').match(/rel=\"canonical\" href=\"([^\"]+)\"/)[1]).sort();
             if (JSON.stringify(locs) !== JSON.stringify(canon)) {
               console.error('::error::sitemap e canonical divergem');
               console.error('sitemap:  ' + locs.join(', '));

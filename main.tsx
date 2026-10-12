@@ -4,6 +4,7 @@ import { App } from "./app/App";
 import "./app/globals.css";
 import "./app/story.css";
 import "./app/refinements.css";
+import "./app/platform.css";
 import "./app/consent.css";
 
 const container = document.getElementById("root")!;
