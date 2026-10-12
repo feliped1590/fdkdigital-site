@@ -10,13 +10,13 @@
  */
 
 /**
- * ID de medição do GA4, no formato G-XXXXXXXXXX.
+ * ID de medição do GA4 da FDK Digital.
  *
- * VAZIO DE PROPÓSITO: preencher com o ID da propriedade da FDK. Enquanto
- * estiver vazio, toda a camada fica inerte — o banner não aparece e nada é
- * carregado, mesmo que alguém já tenha consentido.
+ * É a única declaração da tag no projeto — não há script do Google em nenhum
+ * HTML. Esvaziar esta constante desliga toda a camada: o banner deixa de
+ * aparecer e nada é carregado, mesmo para quem já consentiu.
  */
-export const GA4_ID = "";
+export const GA4_ID = "G-FLWF2C0Y3T";
 
 const CHAVE = "fdk-consentimento-v1";
 
@@ -51,10 +51,17 @@ declare global {
   }
 }
 
-function gtag(...args: unknown[]): void {
+/**
+ * O gtag.js distingue o objeto `arguments` de um array comum: ele só interpreta
+ * como comando o que foi empurrado como `arguments`. Empurrar um array normal
+ * faz os comandos serem ignorados em silêncio — a tag carrega, nada é enviado,
+ * e não aparece erro nenhum. Por isso a forma abaixo replica o snippet oficial
+ * em vez de usar rest parameters.
+ */
+const gtag: Gtag = function gtag(): void {
   window.dataLayer = window.dataLayer ?? [];
-  window.dataLayer.push(args);
-}
+  window.dataLayer.push(arguments);
+} as Gtag;
 
 let defaultsDefinidos = false;
 
@@ -62,7 +69,7 @@ let defaultsDefinidos = false;
 function definirPadroesNegados(): void {
   if (defaultsDefinidos) return;
   defaultsDefinidos = true;
-  window.gtag = window.gtag ?? (gtag as Gtag);
+  window.gtag = window.gtag ?? gtag;
   gtag("consent", "default", {
     ad_storage: "denied",
     ad_user_data: "denied",

@@ -74,3 +74,49 @@ Testado com um ID temporário, depois removido.
 | Menor fonte do banner | 12px |
 | Com `GA4_ID` vazio | nada no HTML, banner não aparece |
 | Hidratação | sem mensagens no console |
+
+---
+
+## Ativação (12/10/2026)
+
+`GA4_ID` preenchido com **`G-FLWF2C0Y3T`**, a propriedade da FDK Digital.
+
+### Um bug foi encontrado na ativação
+
+A primeira verificação, feita com um ID fictício, confirmava apenas que o *script era injetado* — e isso passava. Com o ID real ficou claro que **nenhum hit era enviado**: a tag carregava, o `gtag` ficava definido, e nada chegava ao Google. Sem erro no console.
+
+A causa estava no empurrão para o `dataLayer`:
+
+```diff
+-function gtag(...args: unknown[]): void {
+-  window.dataLayer.push(args);          // array comum
+-}
++const gtag: Gtag = function gtag(): void {
++  window.dataLayer.push(arguments);     // objeto `arguments`
++} as Gtag;
+```
+
+O `gtag.js` só interpreta como comando o que foi empurrado como objeto `arguments`. Um array comum é **ignorado em silêncio** — a tag carrega, nada é enviado, e nenhum erro aparece. Por isso a forma agora replica o snippet oficial em vez de usar rest parameters.
+
+### Verificação com o ID real
+
+Interceptando `fetch`, `sendBeacon`, `XMLHttpRequest` e `Image` — os quatro canais que o GA4 pode usar.
+
+| Cenário | Resultado |
+|---|---|
+| Desktop 1440 — **recusar** | 0 requisições ao Google, 0 scripts no DOM |
+| Desktop 1440 — **aceitar** | **1 hit** para `google-analytics.com/g/collect` com `tid=G-FLWF2C0Y3T` |
+| Mobile 375 — **recusar** | 0 requisições, 0 scripts |
+| Mobile 375 — **aceitar** | **1 hit** com o `tid` correto |
+| Tags no DOM após aceitar | **1** — sem duplicação |
+| HTML publicado | **0** ocorrências de `gtag`/`googletagmanager` |
+
+O hit carrega `gcs=G101`, que é a assinatura do Consent Mode: analytics concedido, armazenamento de anúncios negado. E `npa=1`, anúncios não personalizados.
+
+No mobile, o hit só apareceu após ~9 segundos — com 5 segundos de espera a medição dava falso negativo. Vale lembrar disso em verificações futuras.
+
+### O que não consegui verificar
+
+**O relatório de tempo real do GA4.** Não tenho acesso ao painel da propriedade. O que confirmei é que os hits saem do navegador com o ID correto e os parâmetros de consentimento certos — a confirmação no painel precisa ser feita por quem tem acesso.
+
+Os testes enviaram hits reais a partir de `http://localhost:4230/`, então devem aparecer no Tempo Real com esse endereço como origem.
